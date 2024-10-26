@@ -28,13 +28,7 @@ SAVED_MODEL_PATH = "https://tfhub.dev/captain-pool/esrgan-tf2/1"
      
 
 def preprocess_image(image_path):
-  """ Loads image from path and preprocesses to make it model ready
-      Args:
-        image_path: Path to the image file
-  """
   hr_image = tf.image.decode_image(tf.io.read_file(image_path))
-  # If PNG, remove the alpha channel. The model only supports
-  # images with 3 color channels.
   if hr_image.shape[-1] == 4:
     hr_image = hr_image[...,:-1]
   hr_size = (tf.convert_to_tensor(hr_image.shape[:-1]) // 4) * 4
@@ -44,13 +38,7 @@ def preprocess_image(image_path):
 
      
 
-def save_image(image, filename):
-  """
-    Saves unscaled Tensor Images.
-    Args:
-      image: 3D image tensor. [height, width, channels]
-      filename: Name of the file to save.
-  """
+def save_image(image, filename)
   if not isinstance(image, Image.Image):
     image = tf.clip_by_value(image, 0, 255)
     image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
@@ -60,14 +48,6 @@ def save_image(image, filename):
 
 %matplotlib inline
 # Declaring the user-defined function for the ploting the image
-
-def plot_image(image, title=""):
-  """
-    Plots images from image tensors.
-    Args:
-      image: 3D image tensor. [height, width, channels].
-      title: Title to display in the plot.
-  """
   image = np.asarray(image)
   image = tf.clip_by_value(image, 0, 255)
   image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
@@ -116,7 +96,6 @@ upscaled_image.shape
 (672, 1184, 3)
 
 def unsharp_mask(image, kernel_size=(5, 5), sigma=1.0, amount=1.0, threshold=0):
-    """Return a sharpened version of the image, using an unsharp mask."""
     blurred = cv2.GaussianBlur(image, kernel_size, sigma)
     sharpened = float(amount + 1) * image - float(amount) * blurred
     sharpened = np.maximum(sharpened, np.zeros(sharpened.shape))
@@ -146,11 +125,6 @@ test_image.shape
 (177, 284, 3)
 
 def downscale_image(image):
-  """
-      Scales down images using bicubic downsampling.
-      Args:
-          image: 3D or 4D tensor of preprocessed image
-  """
   image_size = []
   if len(image.shape) == 3:
     image_size = [image.shape[1], image.shape[0]]
@@ -188,7 +162,6 @@ test_low_res_image=cv2.imread("/content/Low Resolution.jpg")
 
 test_low_res_image.shape
      
-(44, 71, 3)
 
 model = hub.load(SAVED_MODEL_PATH)
      
@@ -198,7 +171,6 @@ fake_image = model(lr_image)
 fake_image = tf.squeeze(fake_image)
 print("Time Taken: %f" % (time.time() - start))
      
-Time Taken: 2.654266
 
 plot_image(tf.squeeze(fake_image), title="Super Resolution")
 # Calculating PSNR wrt Original Image
@@ -242,8 +214,6 @@ sharpened_edge_image = unsharp_mask(test_upscaled_image)
      
 
 cv2.imwrite('sharpened_edge_image.jpg', sharpened_edge_image)
-     
-True
 
 img_path = '/content/sharpened_edge_image.jpg'
 img = mpimg.imread(img_path)
