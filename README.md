@@ -231,3 +231,15 @@ imgplot = ax.imshow(img)
 plt.show()
 print("PSNR: %f" % psnr)
 ```
+
+### Output
+
+![image](https://github.com/user-attachments/assets/220437c8-456c-43af-b214-f72dbad1b03e)
+
+
+![image](https://github.com/user-attachments/assets/d8be4964-c8ba-4a16-b8f9-f34701ba362c)
+
+
+
+
+
