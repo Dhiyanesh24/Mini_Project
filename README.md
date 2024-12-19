@@ -233,18 +233,9 @@ print("PSNR: %f" % psnr)
 ```
 
 ### Output
-
-![image](https://github.com/user-attachments/assets/220437c8-456c-43af-b214-f72dbad1b03e)
-
-
-
-
-
-
-
-
-
-![image](https://github.com/user-attachments/assets/d8be4964-c8ba-4a16-b8f9-f34701ba362c)
+![image](https://github.com/user-attachments/assets/e7ef9d13-f092-4e0e-a65e-6cf0a72d2b51)
+![image](https://github.com/user-attachments/assets/d310d77b-7460-4998-8528-abb761090f1d)
+![image](https://github.com/user-attachments/assets/83130b47-bf56-459b-9f41-9500473f0520)
 
 
 
